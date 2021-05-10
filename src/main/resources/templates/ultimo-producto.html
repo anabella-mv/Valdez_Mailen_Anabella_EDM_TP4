@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ultimo Producto</title>
+	<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css}">
+</head>
+
+<body class="fondo text-white">
+
+	<div class="container">
+		<div class="micontainer text-dark">
+			<div th:insert="layouts/header :: header"></div>
+			<h2 class="text-center m-5">ULTIMO PRODUCTO</h2>
+			<div class="d-flex justify-content-center">
+				<div class="col-md-4">
+					<div class="card mb-5" style="width: 100%">
+						<div class="card-header">
+							<img th:src="@{/img/prod.jpg}" alt="" class="container-fluid">
+						</div>
+						<div class="card-body">
+							<p>Nombre: <span th:text="${ultimo.nombre}"></span></p>
+							<p>Marca: <span th:text="${ultimo.marca}"></span></p>
+							<p>Precio: <span th:text="${ultimo.precio}"></span></p>
+							<p>Stock: <span th:text="${ultimo.stock}"></span></p>
+							<div class="text-center">
+								<a href="#" class="btn btn-success text-light"><i
+										class="fas fa-shopping-cart"></i>Comprar</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div th:insert="layouts/footer :: footer"></div>
+	</div>
+
+
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript"
+		src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript"
+		src="webjars/popper.js/1.16.0/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"
+		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
