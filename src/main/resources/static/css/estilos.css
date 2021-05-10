@@ -2,7 +2,7 @@ html{
     height: 100%;
 }
 .minav{
-    background-color: rgb(252, 223, 6);
+    background-color: rgb(220, 155, 90);
 }
 .mifooter{
     text-align: center;
@@ -27,7 +27,7 @@ html{
     margin-top: 17%;
 }
 .navbar-nav > li > .dropdown-menu{ 
-    background-color: rgb(252, 223, 6);
+    background-color: rgb(209, 113, 48);
 }
 .cprincipal{
     position: sticky;
