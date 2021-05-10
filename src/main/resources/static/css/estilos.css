@@ -1,0 +1,35 @@
+html{
+    height: 100%;
+}
+.minav{
+    background-color: rgb(252, 223, 6);
+}
+.mifooter{
+    text-align: center;
+    padding: 16px 16px 16px 16px;
+    margin-top: 24px;
+}
+.fondo{
+    height: 100%;
+    background-image: url("../img/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  
+}
+.container{
+    height: 100%;
+}
+.micontainer{
+    min-height: 100%;
+}
+.login{
+    margin-top: 17%;
+}
+.navbar-nav > li > .dropdown-menu{ 
+    background-color: rgb(252, 223, 6);
+}
+.cprincipal{
+    position: sticky;
+    left: 0;
+}

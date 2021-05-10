@@ -2,57 +2,53 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<link th:rel="stylesheet" type="text/css" th:href="@{/css/nicoleestilos.css}" />
-	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
-	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css}" />
 	<meta charset="UTF-8">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Productos</title>
+	<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css}">
 </head>
 
-<body>
+<body class="fondo">
+
+
 	<div class="container">
-		<div th:insert="layouts/header :: header"></div>
+		<div class="micontainer text-dark">
+			<div th:insert="layouts/header :: header"></div>
+			<h1 th:if="not ${productos.empty}" class="text-center m-5">LISTA DE PRODUCTOS</h1>
+			<br>
+			<div th:if="${productos.empty}" class="text-center m-5">
+				<h1>No hay productos cargados</h1>
+			</div>
+			<div class="row d-flex justify-content-center">
+				<div th:each="producto : ${productos}" class="col-md-4">
+					<div class="card mb-5" style="width: 100%;">
+						<div class="card-header">
+							<img th:src="@{/img/prod.jpg}" alt="" class="container-fluid">
+						</div>
+						<div class="card-body">
+							<p>Nombre: <span th:text="${producto.nombre}"></span></p>
+							<p>Marca: <span th:text="${producto.marca}"></span></p>
+							<p>Precio: <span th:text="${producto.precio}"></span></p>
+							<p>Stock: <span th:text="${producto.stock}"></span></p>
+							<div class="text-center">
+								<a href="#" class="btn btn-success text-light"><i
+										class="fas fa-shopping-cart"></i>Comprar</a>
+							</div>
+						</div>
+					</div>
 
-		<div class="alert alert-primary" role="alert">
-			Producto Guardado Satisfactoriamente
+				</div>
+			</div>
+
 		</div>
-
-		<h2>Menú</h2>
-		<ul>
-			<li><a href="ultimo">Mostrar Último</a></li>
-			<li><a href="todos">Mostrar Todos</a></li>
-			<li>Buscar Producto por Nombre</li>
-			<li>Buscar Producto por Código</li>
-			<li><a href="volver">Volver</a></li>
-		</ul>
-
-		<!-- ---------------------------------------------------------------- -->
-
-		<br>
-		<h3>Lista de Productos</h3><br>
-		<div>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Cod Producto</th>
-						<th>Nombre</th>
-						<th>Precio</th>
-						<th>Marca</th>
-						<th>Stock</th>
-					</tr>
-				</thead>
-				<tr th:each="producto : ${productos}">
-					<td th:text="${producto.codProducto}"></td>
-					<td th:text="${producto.nombre}"></td>
-					<td th:text="${producto.precio}"></td>
-					<td th:text="${producto.marca}"></td>
-					<td th:text="${producto.stock}"></td>
-				</tr>
-			</table>
-		</div>
-
 		<div th:insert="layouts/footer :: footer"></div>
+
 	</div>
+
+
 
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript"
 		src="webjars/jquery/3.5.1/jquery.min.js"></script>
@@ -60,7 +56,6 @@
 		src="webjars/popper.js/1.16.0/popper.min.js"></script>
 	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"
 		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>

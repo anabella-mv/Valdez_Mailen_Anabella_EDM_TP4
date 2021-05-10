@@ -2,71 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<link th:rel="stylesheet" type="text/css" th:href="@{/css/nicoleestilos.css}" />
-	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
-	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css}" />
 	<meta charset="UTF-8">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Producto</title>
+	<link th:rel="stylesheet" type="text/css" th:href="@{/css/estilos.css}">
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css}">
 </head>
 
-<body>
+<body class="fondo">
 	<div class="container">
 		<div th:insert="layouts/header :: header"></div>
-
-		<h1>Formulario de Carga de Producto</h1>
-		<form id="formProducto" th:object="${unProducto}" th:action="${producto}" method="post">
-
-			<div class="form-group row">
-				<label for="codigo" class="col-sm-2 col-form-label">Codigo</label>
-				<div class=" col-sm-10">
-					<input type="number" id="codigo" th:field="*{codProducto}" class="form-control">
+		<div class="micontainer text-dark">
+			
+			<h1 class="text-center m-5">Formulario de Carga de Productos</h1>
+			<div th:if="not ${modoEditar}">
+				<div th:insert="layouts/formulario-producto :: formulario-producto"></div>
+			</div>
+			<div th:if="${modoEditar}">
+				<div th:insert="layouts/formulario-producto-editar :: formulario-producto-editar">
 				</div>
 			</div>
-
-			<div class="form-group row">
-				<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
-				<div class=" col-sm-10">
-					<input type="text" id="nombre" th:field="*{nombre}" class="form-control">
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label for="precio" class="col-sm-2 col-form-label">Precio</label>
-				<div class=" col-sm-10">
-					<input type="number" id="precio" th:field="*{precio}" class="form-control">
-				</div>
-			</div>
-
-			<div class="form-group row">
-				<label for="marca" class="col-sm-2 col-form-label">Marca</label>
-				<div class=" col-sm-10">
-					<input type="text" id="marca" th:field="*{marca}" class="form-control">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="stock" class="col-sm-2 col-form-label">Stock</label>
-				<div class=" col-sm-10">
-					<input type="number" id="stock" th:field="*{stock}" class="form-control">
-				</div>
-			</div>
-
-			<div>
-				<button type="submit" value="Agregar" class="btn btn-primary btn-sm">Agregar</button>
-			</div>
-
-		</form>
-		<br>
+		</div>
 		<div th:insert="layouts/footer :: footer"></div>
 	</div>
-
 	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript"
 		src="webjars/jquery/3.5.1/jquery.min.js"></script>
 	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript"
 		src="webjars/popper.js/1.16.0/popper.min.js"></script>
 	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"
 		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>
