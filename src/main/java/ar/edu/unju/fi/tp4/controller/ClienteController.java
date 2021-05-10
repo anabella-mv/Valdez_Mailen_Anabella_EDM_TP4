@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ar.edu.unju.fi.tp4.model.Cliente;
@@ -24,21 +25,52 @@ public class ClienteController {
 	IClienteService clienteService;
 
 	@GetMapping("/cliente/mostrar")
-	public String cargarCliente(Model model) {
+	public String crearCliente(Model model) {
+		model.addAttribute("modoEditar", false);
 		model.addAttribute("unCliente", clienteService.crearCliente());
 		model.addAttribute("clientes", clienteService.obtenerTodosClientes());
-		return("cliente");
+		return "cliente";
+	}
+	
+	@GetMapping("/cliente/editar/{numeroDocumento}")
+	public String editarCliente(Model model,@PathVariable(name = "numeroDocumento") int dni) throws Exception{
+		try{
+			Cliente encontrado = clienteService.encontrarCliente(dni);
+			model.addAttribute("unCliente", encontrado);
+			model.addAttribute("modoEditar", true);
+		}
+		catch(Exception e){
+			model.addAttribute("usuarioErrorMensaje", e.getMessage());
+			model.addAttribute("modoEditar", false);
+		}
+		model.addAttribute("clientes", clienteService.obtenerTodosClientes());
+		return "cliente";
+	}
+	@GetMapping("/cliente/eliminar/{numeroDocumento}")
+	public String eliminarCliente(@PathVariable(name = "numeroDocumento")int dni,Model model) throws Exception{
+		try {
+			clienteService.eliminarCliente(dni);
+		} catch (Exception e) {
+			model.addAttribute("usuarioErrorMensaje", e.getMessage());
+		}
+		return "redirect:/cliente/mostrar";
 	}
 
+
 	@PostMapping("/cliente/guardar")
-	public String guardarNuevoProducto(@ModelAttribute("unCliente") Cliente nuevoCliente, Model model) {
+	public String guardarCliente(@ModelAttribute("unCliente") Cliente nuevoCliente, Model model) {
 		BELLA.info("METHOD: ingresando el metodo Guardar");
 		clienteService.guardarCliente(nuevoCliente);		
 		BELLA.info("Tamaño del Listado: "+ clienteService.obtenerTodosClientes().size());
 		trabajarConFechas();
 		return "redirect:/cliente/mostrar";
 	}
-	
+	@PostMapping("/cliente/modificar")
+	public String modificarCliente(@ModelAttribute("unCliente") Cliente clienteModificado, Model model){
+		clienteService.modificarCliente(clienteModificado);
+		return "redirect:/cliente/mostrar";
+	}
+
 	public void trabajarConFechas() {
 		//algunas cosas con fecha;
 		//obtengo tres fechas

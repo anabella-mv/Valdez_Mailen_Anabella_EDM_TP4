@@ -1,6 +1,6 @@
 package ar.edu.unju.fi.tp4.service.imp;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -9,62 +9,73 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tp4.model.Producto;
 import ar.edu.unju.fi.tp4.service.IProductoService;
+import ar.edu.unju.fi.tp4.util.ListadoProductos;
 
 @Service
-public class ProductoServiceImp implements IProductoService{
+public class ProductoServiceImp implements IProductoService {
+
 	private static final Log ANABELLA = LogFactory.getLog(ProductoServiceImp.class);
 	
 	@Autowired
 	Producto unProducto;
 	
-	ArrayList<Producto> listaDeProductos = new ArrayList<Producto>();
-	
+	public List<Producto> listadoProductos = ListadoProductos.productos;
+
 	@Override
 	public void guardarProducto(Producto unProducto) {
-		// TODO Auto-generated method stub
-		System.out.println(unProducto.getNombre());
-		listaDeProductos.add(unProducto);
-		System.out.println(listaDeProductos.size());
+		listadoProductos.add(unProducto);
 		ANABELLA.info("METHOD: Ingresando a guardar producto");
-		ANABELLA.info("RESULT: Guardado" + listaDeProductos.get(listaDeProductos.size()-1).getNombre());
-		
+		ANABELLA.info("RESULT: Guardado" + listadoProductos.get(listadoProductos.size()-1).getNombre());
+		ANABELLA.info("Producto Guardado: " + unProducto.getCodigo());
+	}
+
+
+	@Override
+	public void eliminarProducto(int codigo) {
+		for(int i = 0; i < listadoProductos.size(); i++){
+			if(listadoProductos.get(i).getCodigo() == codigo){
+				listadoProductos.remove(i);
+				break;
+			}
+		}
 	}
 
 	@Override
-	public void modificaProducto(Producto productoAModificar) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void eliminarProducto(Producto productoAElimiar) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Producto obtenerUnProducto(String nombreProducto) {
-		// TODO Auto-generated method stub
+	public Producto obtenerProducto(int codigo) {
+		for(int i = 0; i < listadoProductos.size(); i++){
+			if(listadoProductos.get(i).getCodigo() == codigo){
+				return listadoProductos.get(i);
+			}
+		}
 		return null;
 	}
 
 	@Override
-	public ArrayList<Producto> obtenerTodosProductos() {
-		// TODO Auto-generated method stub
-		return listaDeProductos;
+	public List<Producto> obtenerProductos() {
+		ANABELLA.info("Todos los productos obtenidos");
+		return listadoProductos;
 	}
 
 	@Override
-	public Producto obtenerProductoNuevo() {
-		// TODO Auto-generated method stub
+	public Producto obtenerNuevoProducto() {
+		ANABELLA.info("Nuevo producto obtenido y listo para ser cargado");
 		return unProducto;
 	}
 
 	@Override
 	public Producto obtenerUltimoProducto() {
-		// TODO Auto-generated method stub
-		int i = listaDeProductos.size() - 1;
-		return listaDeProductos.get(i);
+		int index = listadoProductos.size() - 1;
+		ANABELLA.info("Ultimo producto Guardado: " + listadoProductos.get(index).getCodigo());
+		return listadoProductos.get(index);
 	}
 
+	@Override
+	public void modificarProducto(Producto productoModificado) {
+		for(int i = 0; i < listadoProductos.size(); i++){
+			if(listadoProductos.get(i).getCodigo() == productoModificado.getCodigo()){
+				listadoProductos.set(i, productoModificado);
+				break;
+			}
+		}
+	}
 }

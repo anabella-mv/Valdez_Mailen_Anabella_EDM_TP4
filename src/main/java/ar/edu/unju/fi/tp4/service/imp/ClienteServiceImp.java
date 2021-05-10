@@ -11,28 +11,55 @@ import ar.edu.unju.fi.tp4.util.ListadoClientes;
 
 @Service
 public class ClienteServiceImp implements IClienteService {
-	
-	private List<Cliente> listadoClientes = ListadoClientes.clientes;
-	
+
+	public List<Cliente> clientes = ListadoClientes.clientes;
+
 	@Autowired
 	Cliente unCliente;
 
 	@Override
 	public void guardarCliente(Cliente unCliente) {
-		// TODO Auto-generated method stub
-		listadoClientes.add(unCliente);		
+		clientes.add(unCliente);
 	}
-	
+
 	@Override
 	public Cliente crearCliente() {
-		// TODO Auto-generated method stub
 		return unCliente;
 	}
 
 	@Override
 	public List<Cliente> obtenerTodosClientes() {
-		// TODO Auto-generated method stub
-		return listadoClientes;
+
+		return clientes;
 	}
 
+	@Override
+	public Cliente encontrarCliente(int dni) {
+		for (int i = 0; i < clientes.size(); i++) {
+			if (clientes.get(i).getNroDoc() == dni) {
+				return clientes.get(i);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void modificarCliente(Cliente clienteModificado) {
+		for (int i = 0; i < clientes.size(); i++) {
+			if (clientes.get(i).getNroDoc() == clienteModificado.getNroDoc()) {
+				clientes.set(i, clienteModificado);
+				break;
+			}
+		}
+	}
+
+	@Override
+	public void eliminarCliente(int dni) {
+		for (int i = 0; i < clientes.size(); i++) {
+			if (clientes.get(i).getNroDoc() == dni) {
+				clientes.remove(i);
+				break;
+			}
+		}
+	}
 }
