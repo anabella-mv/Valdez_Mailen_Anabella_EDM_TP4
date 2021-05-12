@@ -11,7 +11,7 @@ html{
 }
 .fondo{
     height: 100%;
-    background-image: url("../img/fondo.jpg");
+    background-image: url("../img/fondop.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -33,3 +33,4 @@ html{
     position: sticky;
     left: 0;
 }
+

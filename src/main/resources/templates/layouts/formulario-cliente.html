@@ -13,7 +13,7 @@
         <form id="formCliente" th:object="${unCliente}" th:action="@{/cliente/guardar}" method="post">
             <div class="form-group row d-flex justify-content-center">
                 <label for="tipodoc" class="col-sm-3 col-md-2 form-label text-center">Tipo de Documento: </label>
-                <select name="tipodoc" id="tipodoc" class="col-7 form-control" th:field="*{tipoDeDocumento}">
+                <select name="tipodoc" id="tipodoc" class="col-7 form-control" th:field="*{tipoDoc}">
                     <option value="DNI" selected>DNI</option>
                     <option value="Pasaporte">Pasaporte</option>
                 </select>
@@ -23,7 +23,7 @@
 
             <div class="form-group row d-flex justify-content-center">
                 <label for="numdoc" class="col-sm-3 col-md-2 form-label text-center">Documento:</label>
-                <input type="number" id="numdoc" th:field="*{numeroDocumento}" class="col-7 form-control">
+                <input type="number" id="numdoc" th:field="*{nroDoc}" class="col-7 form-control">
             </div>
 
             <br>
@@ -53,14 +53,14 @@
 
             <br>
             <div class="form-group row d-flex justify-content-center">
-                <label for="codigo" class="col-sm-3 col-md-2 form-label text-center">Cod Area:</label>
-                <input type="number" id="codigo" th:field="*{codigoAreaTelefono}" class="col-7 form-control">
+                <label for="codigo" class="col-sm-3 col-md-2 form-label text-center">Código de Area:</label>
+                <input type="number" id="codigo" th:field="*{codigoAreaTel}" class="col-7 form-control">
             </div>
 
             <br>
             <div class="form-group row d-flex justify-content-center">
                 <label for="numtel" class="col-sm-3 col-md-2 form-label text-center">Telefono:</label>
-                <input type="number" id="numtel" th:field="*{numeroTelefono}" class="col-7 form-control">
+                <input type="number" id="numtel" th:field="*{numTel}" class="col-7 form-control">
             </div>
             <br>
             <div class="form-group d-flex justify-content-center">
