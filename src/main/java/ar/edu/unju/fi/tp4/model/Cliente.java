@@ -4,27 +4,47 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
+@Entity
+@Table (name="CLIENTES")
 @Component
 public class Cliente {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
+	private int nroDoc;
+	@Column
+	private String tipoDoc;
+	@Column
+	private int codigoAreaTel;
+	@Column
+	private int numTel;
+	@Column
+	private String email;
+	@Column
+	private String nombreApellido;
+	@Column
+	private String password;
+	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaNacimiento;
+	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaUltimaCompra;
-	
+
+
 	//Calendar
 	//private Date fechaUltimCompra = new Date();
-	
-	private int nroDoc;
-	private String tipoDoc;
-	private int codigoAreaTel;
-	private int numTel;
-	private String email;
-	private String nombreApellido;
-	private String password;
+		
 	
 	public Cliente() {
 	}
