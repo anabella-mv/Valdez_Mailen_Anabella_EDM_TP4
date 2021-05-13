@@ -33,4 +33,10 @@ html{
     position: sticky;
     left: 0;
 }
-
+.navmio{
+	background-color: rgb(214, 159, 105);
+	padding: 16px 16px 12px 16px;
+}
+.headermio{
+	background-color: rgb(214, 159, 105);
+}
