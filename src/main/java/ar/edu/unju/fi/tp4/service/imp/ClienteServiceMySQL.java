@@ -10,7 +10,7 @@ import ar.edu.unju.fi.tp4.model.Cliente;
 import ar.edu.unju.fi.tp4.repository.IClienteDAO;
 import ar.edu.unju.fi.tp4.service.IClienteService;
 @Service
-@Qualifier("otroImp")
+@Qualifier("implementacionMySQL")
 public class ClienteServiceMySQL implements IClienteService{
 	
 	@Autowired
@@ -18,10 +18,11 @@ public class ClienteServiceMySQL implements IClienteService{
 	
 	@Autowired
 	IClienteDAO clienteDAO;
+	
 	@Override
-	public void guardarCliente(Cliente unCliente) {
+	public void guardarCliente(Cliente clienteGuardado) {
 		// TODO Auto-generated method stub
-		
+		clienteDAO.save(clienteGuardado);
 	}
 
 	@Override

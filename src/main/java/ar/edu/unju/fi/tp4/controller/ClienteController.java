@@ -23,7 +23,7 @@ public class ClienteController {
 	private static final Log BELLA = LogFactory.getLog(ClienteController.class);
 
 	@Autowired
-	@Qualifier("otroImp")
+	@Qualifier("implementacionMySQL")
 	IClienteService clienteService;
 
 	@GetMapping("/cliente/mostrar")

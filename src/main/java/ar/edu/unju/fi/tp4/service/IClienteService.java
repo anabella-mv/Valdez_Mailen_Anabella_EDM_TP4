@@ -9,7 +9,7 @@ import ar.edu.unju.fi.tp4.model.Cliente;
 @Service
 public interface IClienteService {
 	
-	public void guardarCliente(Cliente unCliente);
+	public void guardarCliente(Cliente clienteGuardado);
 	public Cliente crearCliente();
 	public List<Cliente> obtenerTodosClientes();
 	public Cliente encontrarCliente(int dni);

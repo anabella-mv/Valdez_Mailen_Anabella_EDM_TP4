@@ -21,6 +21,8 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
+	private Integer idCliente;
+	@Column
 	private int nroDoc;
 	@Column
 	private String tipoDoc;
@@ -252,4 +254,13 @@ public class Cliente {
 				+ codigoAreaTel + ", numTel=" + numTel + ", fechaNacimiento=" + fechaNacimiento
 				+ ", fechaUltimaCompra=" + fechaUltimaCompra + "]";
 	}
+	public Integer getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	
 }
