@@ -64,6 +64,14 @@ public class Cliente {
 		this.fechaUltimaCompra = fechaUltimaCompra;
 	}
 
+
+	public Integer getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
+	}
 	public String getTipoDoc() {
 		return tipoDoc;
 	}
@@ -254,13 +262,5 @@ public class Cliente {
 				+ codigoAreaTel + ", numTel=" + numTel + ", fechaNacimiento=" + fechaNacimiento
 				+ ", fechaUltimaCompra=" + fechaUltimaCompra + "]";
 	}
-	public Integer getIdCliente() {
-		return idCliente;
-	}
 
-	public void setIdCliente(Integer idCliente) {
-		this.idCliente = idCliente;
-	}
-
-	
 }

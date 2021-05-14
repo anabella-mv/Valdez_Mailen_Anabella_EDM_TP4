@@ -38,20 +38,21 @@ public class ClienteServiceMySQL implements IClienteService{
 	}
 
 	@Override
-	public Cliente encontrarCliente(int dni) {
+	public Cliente encontrarCliente(int dni) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return clienteDAO.findById(dni).orElseThrow(()->new Exception ("El cliente no fue encontrado"));
 	}
 
 	@Override
 	public void modificarCliente(Cliente clienteModificado) {
 		// TODO Auto-generated method stub
-		
+		clienteDAO.save(clienteModificado);
 	}
 
 	@Override
 	public void eliminarCliente(int dni) {
 		// TODO Auto-generated method stub
+		clienteDAO.deleteById(dni);
 		
 	}
 
