@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +19,10 @@ import org.springframework.stereotype.Component;
 @Table (name="CLIENTES")
 @Component
 public class Cliente {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
+	@GenericGenerator(name="native", strategy="native")
 	@Column
 	private Integer idCliente;
 	@Column
@@ -42,13 +45,16 @@ public class Cliente {
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaUltimaCompra;
+	@Column
+	private boolean activo;
 
 
 	//Calendar
 	//private Date fechaUltimCompra = new Date();
 		
-	
+
 	public Cliente() {
+		this.activo = true;
 	}
 
 	public Cliente(String tipoDoc, String nombreApellido, String email, String password, int nroDoc,
@@ -65,6 +71,13 @@ public class Cliente {
 	}
 
 
+	public boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
 	public Integer getIdCliente() {
 		return idCliente;
 	}

@@ -34,8 +34,8 @@ public class ClienteController {
 		return "cliente";
 	}
 	
-	@GetMapping("/cliente/editar/{numeroDocumento}")
-	public String editarCliente(Model model,@PathVariable(name = "numeroDocumento") int dni) throws Exception{
+	@GetMapping("/cliente/editar/{nroDoc}")
+	public String editarCliente(Model model,@PathVariable(name = "nroDoc") int dni) throws Exception{
 		try{
 			Cliente encontrado = clienteService.encontrarCliente(dni);
 			model.addAttribute("unCliente", encontrado);
@@ -48,8 +48,8 @@ public class ClienteController {
 		model.addAttribute("clientes", clienteService.obtenerTodosClientes());
 		return "cliente";
 	}
-	@GetMapping("/cliente/eliminar/{numeroDocumento}")
-	public String eliminarCliente(@PathVariable(name = "numeroDocumento")int dni,Model model) throws Exception{
+	@GetMapping("/cliente/eliminar/{nroDoc}")
+	public String eliminarCliente(@PathVariable(name = "nroDoc")int dni,Model model) throws Exception{
 		try {
 			clienteService.eliminarCliente(dni);
 		} catch (Exception e) {
@@ -67,8 +67,9 @@ public class ClienteController {
 		trabajarConFechas();
 		return "redirect:/cliente/mostrar";
 	}
+	
 	@PostMapping("/cliente/modificar")
-	public String modificarCliente(@ModelAttribute("unCliente") Cliente clienteModificado, Model model){
+	public String modificarCliente(@ModelAttribute("unCliente") Cliente clienteModificado, Model model) throws Exception{
 		clienteService.modificarCliente(clienteModificado);
 		return "redirect:/cliente/mostrar";
 	}

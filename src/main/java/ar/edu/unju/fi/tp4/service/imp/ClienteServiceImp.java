@@ -3,6 +3,7 @@ package ar.edu.unju.fi.tp4.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.tp4.model.Cliente;
@@ -10,6 +11,7 @@ import ar.edu.unju.fi.tp4.service.IClienteService;
 import ar.edu.unju.fi.tp4.util.ListadoClientes;
 
 @Service
+@Qualifier("ListaImp")
 public class ClienteServiceImp implements IClienteService {
 
 	public List<Cliente> clientes = ListadoClientes.clientes;

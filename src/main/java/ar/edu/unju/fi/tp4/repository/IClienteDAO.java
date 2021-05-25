@@ -12,10 +12,9 @@ import ar.edu.unju.fi.tp4.model.Cliente;
 @Repository
 public interface IClienteDAO extends CrudRepository<Cliente, Integer>{
 
-	@Query("from Cliente c order by c.nroDoc")
-	public List<Cliente> obtenerClientes();
-	
-	public Optional<Cliente> findByNroDoc(int dni);
-	
-	
+	@Query(value = "SELECT * FROM clientes WHERE activo = true ORDER BY nro_doc",nativeQuery = true)
+    public List<Cliente> obtenerClientes();
+
+    public Optional<Cliente> findByNroDoc(int dni);
+    
 }
