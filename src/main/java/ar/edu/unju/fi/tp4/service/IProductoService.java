@@ -10,10 +10,12 @@ import ar.edu.unju.fi.tp4.model.Producto;
 public interface IProductoService {
 	
 	public void guardarProducto(Producto unProducto);
-	public void eliminarProducto(int codigo);
+	public void eliminarProducto(int codigo) throws Exception;
+	public void modificarProducto(Producto productoModificado) throws Exception;
 	public Producto obtenerProducto(int codigo);
 	public List<Producto> obtenerProductos();
 	public Producto obtenerNuevoProducto();
 	public Producto obtenerUltimoProducto();
-	public void modificarProducto(Producto productoModificado);
+	public Producto encontrarUnProducto(int cod) throws Exception;
+	public Producto crearProducto();
 }

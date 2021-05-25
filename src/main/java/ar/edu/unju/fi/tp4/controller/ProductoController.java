@@ -63,8 +63,8 @@ public class ProductoController {
 		model.addAttribute("productos", productoService.obtenerProductos());
 		return "producto";
 	}
-	@GetMapping("/producto/eliminar/{codigoProducto}")
-	public String eliminarProducto(@PathVariable(name = "codigoProducto") int codigo,Model model) throws Exception{
+	@GetMapping("/producto/eliminar/{codigo}")
+	public String eliminarProducto(@PathVariable(name = "codigo") int codigo,Model model) throws Exception{
 		try {
 			productoService.eliminarProducto(codigo);
 		} catch (Exception e) {
@@ -79,14 +79,33 @@ public class ProductoController {
 	public String productoGuardar(@ModelAttribute("unProducto") Producto nuevoProducto, Model model) {
 		productoService.guardarProducto(nuevoProducto);
 		BELLA.error("Solo de prueba");
+		System.out.println(productoService.obtenerProductos().get(0).getMarca());
+		model.addAttribute("productos", productoService.obtenerProductos());
+
 		return "redirect:/producto";
+		
+		//BELLA.error("Solo de prueba");
 	}
 
 	@PostMapping("/producto/modificar")
-	public String productoModificar(@ModelAttribute(name = "unProducto")Producto productoModificado,Model model){
-		productoService.modificarProducto(productoModificado);
+	public String productoModificar(@ModelAttribute(name = "unProducto")Producto productoModificado,Model model) throws Exception{
+		try {
+			productoService.modificarProducto(productoModificado);
+			model.addAttribute("unProducto", new Producto());				
+			model.addAttribute("editMode", "false");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("formUsuarioErrorMessage",e.getMessage());
+			model.addAttribute("unProducto", productoModificado);			
+			model.addAttribute("productos", productoService.obtenerProductos());
+			model.addAttribute("editMode", "true");
+		}
 		model.addAttribute("productos", productoService.obtenerProductos());
-		return "resultado";
+		return("producto");
+		
+		//productoService.modificarProducto(productoModificado);
+		//model.addAttribute("productos", productoService.obtenerProductos());
+		//return "resultado";
 	}
 	
 }
