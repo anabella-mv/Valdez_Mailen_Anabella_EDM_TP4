@@ -7,15 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 @Entity
 @Table (name="PRODUCTOS")
 @Component
-
 public class Producto{
+	
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
+	@GenericGenerator(name="native", strategy="native")
 	@Column
 	private Integer idProducto;
 	@Column
@@ -31,7 +33,7 @@ public class Producto{
 	@Column
 	private String desc;
 
-	
+
 	public Producto() {
 	}
 	public Producto(int codigo, int stock, String nombre, String marca, double precio, String desc) {

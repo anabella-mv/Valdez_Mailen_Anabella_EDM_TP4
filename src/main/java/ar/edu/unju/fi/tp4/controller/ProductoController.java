@@ -3,6 +3,7 @@ package ar.edu.unju.fi.tp4.controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class ProductoController {
 	
 	
 	@Autowired
+	@Qualifier("impmysqlproducto")
 	IProductoService productoService;
 	
 	@GetMapping("/producto")
@@ -63,8 +65,10 @@ public class ProductoController {
 		model.addAttribute("productos", productoService.obtenerProductos());
 		return "producto";
 	}
-	@GetMapping("/producto/eliminar/{codigo}")
-	public String eliminarProducto(@PathVariable(name = "codigo") int codigo,Model model) throws Exception{
+	//@GetMapping("/producto/eliminar/{codigo}")
+	//public String eliminarProducto(@PathVariable(name = "codigo") int codigo,Model model) throws Exception{
+	@GetMapping("/eliminarProducto/{codigo}")
+	public String eliminarProducto(Model model, @PathVariable(name="cod") int codigo) throws Exception{
 		try {
 			productoService.eliminarProducto(codigo);
 		} catch (Exception e) {

@@ -14,5 +14,5 @@ public interface IProductoDAO extends CrudRepository<Producto, Integer> {
 	@Query("from Producto p order by p.codigo")
 	public List<Producto> obtenerProductos();
 	
-	public Optional<Producto> findByCodigo(int codigo);
+	public Optional<Producto> findByCodigo(int id);
 }
